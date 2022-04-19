@@ -31,7 +31,6 @@ class MainWindow(QDialog):
         self.table.setHorizontalHeaderLabels(['F1(xi)', 'F2(xi)', 'F3(xi)'])
         self.table.setVerticalHeaderLabels(['20', '40', '60', '80', '100'])
         self.table.setFont(self.label_font) 
-        self.write_in_table()
      
     def get_table_values(self):
         self.table_values = []
@@ -40,10 +39,14 @@ class MainWindow(QDialog):
             for row in range(5):
                 temp_values_list.append(int(self.table.item(row, column).text()))
             self.table_values.append(temp_values_list)
-        print(self.table_values)
-            
+        self.table_values[0].insert(0, 0)
+        self.table_values[2].insert(0, 0)
+        self.write_in_table()
+           
     def write_in_table(self): 
         table_dictionary = {}
         for cost in range(20, 101, 20):
-            for temporary_cost in range(cost//20 + 1):
-                pass
+            index = 0
+            for temporary_cost in range(0, cost+1, 20):
+                print(f'{cost} - {temporary_cost} - {self.table_values[0][index]} - {self.table_values[2][((cost//20)) - index]}')
+                index += 1 
