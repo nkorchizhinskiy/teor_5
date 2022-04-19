@@ -4,6 +4,9 @@ from PyQt5.QtWidgets import QDialog, \
                             QLabel, \
                             QPushButton
 from PyQt5.QtGui import QFont                            
+from pprint import pprint
+
+
 class MainWindow(QDialog):
     
     def __init__(self):
@@ -47,6 +50,16 @@ class MainWindow(QDialog):
         table_dictionary = {}
         for cost in range(20, 101, 20):
             index = 0
+            table_value_cost = {}
             for temporary_cost in range(0, cost+1, 20):
+                table_value_f3 = {}
                 print(f'{cost} - {temporary_cost} - {self.table_values[0][index]} - {self.table_values[2][((cost//20)) - index]}')
+                table_value_f3[self.table_values[0][index]] = self.table_values[2][((cost//20)) - index]
+                table_value_cost[temporary_cost] = table_value_f3
                 index += 1 
+            
+            table_dictionary[cost] = table_value_cost
+        pprint(table_dictionary)
+        
+    def get_maximum_from_list(self, ma):
+        pass
