@@ -60,6 +60,17 @@ class MainWindow(QDialog):
             
             table_dictionary[cost] = table_value_cost
         pprint(table_dictionary)
+        self.get_maximum_from_list(table_dictionary)
         
-    def get_maximum_from_list(self, ma):
-        pass
+    def get_maximum_from_list(self, table_dictionary: dict):
+        maximum_cost = []
+        for cost, f1_dict in table_dictionary.items():
+            temp_cost = []
+            for f1, f3_dict in f1_dict.items():
+                temp_f1 = []
+                for f3, res in f3_dict.items():
+                    temp_f1.append([f1, f3 + res])
+                temp_cost.append(temp_f1)
+            maximum_cost.append(temp_cost)
+        pprint(maximum_cost) 
+
